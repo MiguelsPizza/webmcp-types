@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.10](https://github.com/webmachinelearning/webmcp-types/compare/v0.1.9...v0.1.10) (2026-09-28)
+
+
+### Features
+
+* add toolactivated and toolcancel events ([40c038b](https://github.com/webmachinelearning/webmcp-types/commit/40c038b1f6f05281a7755105547104306cab2c06))
+* add toolactivated and toolcancel events ([a0de390](https://github.com/webmachinelearning/webmcp-types/commit/a0de39024baeabfafca4367bdf0ad48cd8bd05b5))
+
 ## [0.1.9](https://github.com/webmachinelearning/webmcp-types/compare/v0.1.8...v0.1.9) (2026-09-17)
 
 
