@@ -233,3 +233,25 @@ test('supports the toolchange, toolactivated, and toolcancel events', () => {
     expectTypeOf<ToolActivatedEventInit['toolName']>().toEqualTypeOf<string | undefined>();
     expectTypeOf<ToolCancelEventInit['toolName']>().toEqualTypeOf<string | undefined>();
 });
+
+test("adds the declarative explainer's SubmitEvent members", () => {
+    document.forms[0].addEventListener('submit', (event) => {
+        expectTypeOf(event.agentInvoked).toEqualTypeOf<boolean>();
+        expectTypeOf(event.respondWith).parameters.toEqualTypeOf<[agentResponse: PromiseLike<unknown>]>();
+        expectTypeOf(event.respondWith).returns.toEqualTypeOf<void>();
+        if (event.agentInvoked) {
+            event.preventDefault();
+            event.respondWith(fetch('/search').then((response) => response.json()));
+        }
+
+        // @ts-expect-error agentInvoked is read-only.
+        event.agentInvoked = true;
+        // @ts-expect-error respondWith() requires a response.
+        event.respondWith();
+        // @ts-expect-error Pass the response promise, not a function that creates it.
+        event.respondWith(async () => 'done');
+    });
+
+    // @ts-expect-error SubmitEventInit has no agentInvoked member; only Chromium adds one.
+    new SubmitEvent('submit', { agentInvoked: true });
+});

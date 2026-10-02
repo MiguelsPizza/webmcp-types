@@ -3,6 +3,7 @@
 This package defines Typescript types (`.d.ts`) for the [WebMCP specification](https://webmachinelearning.github.io/webmcp).
 
 Use this package to augment the ambient [`"dom"`](https://www.typescriptlang.org/docs/handbook/compiler-options.html#compiler-options) type definitions with the new definitions for WebMCP.
+It also adds `agentInvoked` and `respondWith()` to `SubmitEvent` from the [declarative API explainer](https://github.com/webmachinelearning/webmcp/blob/main/declarative-api-explainer.md), which the draft does not specify yet.
 
 ## What are declaration files?
 
