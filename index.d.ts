@@ -1,11 +1,10 @@
-export {};
-
 type IsUnion<T, TWhole = T> = T extends TWhole ? [TWhole] extends [T] ? false : true : never;
 type NonUnionTupleElements<TTuple extends readonly string[]> = {
     [TIndex in keyof TTuple]: true extends IsUnion<TTuple[TIndex]> ? never : TTuple[TIndex];
 }[number];
 type Simplify<T> = { [TKey in keyof T]: T[TKey] } & {};
 
+// Only literal names in a literal tuple are required; widened or union shapes are runtime choices.
 type JsonSchemaRequiredKeys<TSchema> = TSchema extends {
     readonly required: infer TRequired extends readonly string[];
 } ? number extends TRequired["length"]
@@ -283,6 +282,7 @@ interface Document {
 interface ToolActivatedEventInit extends EventInit {
     /**
      * The name of the tool whose execution has started.
+     * @default ""
      */
     toolName?: string;
 }
@@ -305,6 +305,7 @@ var ToolActivatedEvent: {
 interface ToolCancelEventInit extends EventInit {
     /**
      * The name of the tool whose execution was cancelled.
+     * @default ""
      */
     toolName?: string;
 }
