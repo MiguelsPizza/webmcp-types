@@ -329,15 +329,13 @@ interface SubmitEvent {
      * Whether an agent caused this submission by invoking the form's declarative tool.
      * Absent in browsers without declarative tools, so check it before calling `respondWith()`.
      *
-     * Defined by the declarative API explainer; the draft does not specify declarative tools yet.
      * @see https://github.com/webmachinelearning/webmcp/blob/main/declarative-api-explainer.md#events
      */
     readonly agentInvoked: boolean;
     /**
      * Responds to the agent that invoked the form's declarative tool instead of letting the form navigate.
-     * Call `preventDefault()` first.
+     * Call during submit event dispatch, after calling `preventDefault()`.
      *
-     * Defined by the declarative API explainer; the draft does not specify declarative tools yet.
      * @param agentResponse A promise that resolves to the response the agent will consume.
      * @see https://github.com/webmachinelearning/webmcp/blob/main/declarative-api-explainer.md#events
      */

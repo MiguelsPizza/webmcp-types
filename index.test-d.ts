@@ -237,8 +237,10 @@ test('supports the toolchange, toolactivated, and toolcancel events', () => {
 test("adds the declarative explainer's SubmitEvent members", () => {
     document.forms[0].addEventListener('submit', (event) => {
         expectTypeOf(event.agentInvoked).toEqualTypeOf<boolean>();
-        expectTypeOf(event.respondWith).parameters.toEqualTypeOf<[agentResponse: PromiseLike<unknown>]>();
+        expectTypeOf(event.respondWith).parameters
+            .toEqualTypeOf<[agentResponse: PromiseLike<unknown>]>();
         expectTypeOf(event.respondWith).returns.toEqualTypeOf<void>();
+
         if (event.agentInvoked) {
             event.preventDefault();
             event.respondWith(fetch('/search').then((response) => response.json()));
